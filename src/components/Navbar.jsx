@@ -12,6 +12,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -29,23 +30,7 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`immersive-nav ${scrolled ? 'scrolled' : ''}`}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 5000,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: scrolled ? '1rem 4rem' : '2.5rem 4rem',
-        transition: 'padding 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
-        background: scrolled ? 'rgba(6, 6, 8, 0.75)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.05)' : '1px solid transparent'
-      }}
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 5000 }}
     >
       {/* Dynamic Sleek Logo */}
       <a href="#hero" style={{ textDecoration: 'none' }} className="nav-logo">
@@ -131,6 +116,7 @@ export default function Navbar() {
       {/* Interactive CTA Button */}
       <motion.a 
         href="#book-drive"
+        className="nav-cta"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         style={{
@@ -153,6 +139,62 @@ export default function Navbar() {
       >
         Book a Drive
       </motion.a>
+
+      <button className={`nav-hamburger ${mobileMenuOpen ? 'open' : ''}`} onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle Menu">
+        <span />
+        <span />
+        <span />
+      </button>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: "-100%" }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: "-100%" }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="nav-mobile-menu"
+          >
+            {links.map((link, idx) => (
+              <motion.a
+                key={link.label}
+                href={link.href}
+                className="nav-mobile-link"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ delay: 0.1 * idx, duration: 0.4 }}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.label}
+              </motion.a>
+            ))}
+            <motion.a 
+              href="#book-drive"
+              className="nav-cta mobile"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ delay: 0.1 * links.length, duration: 0.4 }}
+              onClick={() => setMobileMenuOpen(false)}
+              style={{
+                marginTop: '1.5rem',
+                padding: '0.8rem 2.5rem',
+                background: 'linear-gradient(135deg, #4fc3f7 0%, #7c3aed 100%)',
+                color: '#fff',
+                textTransform: 'uppercase',
+                letterSpacing: '0.15em',
+                fontWeight: 700,
+                textDecoration: 'none',
+                borderRadius: '4px'
+              }}
+            >
+              Book a Drive
+            </motion.a>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }

@@ -141,21 +141,21 @@ select option {
 .immersive-nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 0 2.5rem;
-  height: 80px;
+  z-index: 5000;
+  padding: 2.5rem 4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: height 0.4s ease, background 0.4s ease, backdrop-filter 0.4s ease;
+  transition: padding 0.5s cubic-bezier(0.22, 1, 0.36, 1), background 0.4s cubic-bezier(0.22, 1, 0.36, 1), backdrop-filter 0.4s ease;
   background: transparent;
+  border-bottom: 1px solid transparent;
 }
 .immersive-nav.scrolled {
-  height: 64px;
-  background: rgba(6,6,8,0.85);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 1rem 4rem;
+  background: rgba(6, 6, 8, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .nav-logo {
@@ -286,9 +286,24 @@ select option {
 .nav-mobile-link:hover { color: var(--neon); }
 
 @media (max-width: 900px) {
-  .nav-links, .nav-cta:not(.mobile) { display: none; }
+  .nav-links, .nav-cta:not(.mobile) { display: none !important; }
   .nav-hamburger { display: flex; }
-  .immersive-nav { padding: 0 1.5rem; }
+  .immersive-nav { padding: 1.5rem 1.5rem; }
+  .immersive-nav.scrolled { padding: 1rem 1.5rem; }
+  
+  /* Additional universal mobile fixes */
+  #book-drive, #contact { padding: 6rem 1.5rem !important; }
+  .section-container { padding: 0 !important; }
+  .footer-container { padding: 0 1.5rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 2rem !important; }
+  .footer-brand { grid-column: 1 / -1; margin-bottom: 1rem; }
+  .stats-grid { grid-template-columns: 1fr; }
+  form > div[style*="gridTemplateColumns"] { grid-template-columns: 1fr !important; }
+  form[style*="gap: 2rem"] { gap: 1.2rem !important; }
+  
+  .hero-headline { font-size: clamp(2.8rem, 12vw, 4rem); }
+  .overlay-section { padding: 0 1.5rem; justify-content: flex-start; }
+  .overlay-content { padding: 2rem; max-width: 100%; border-radius: 12px; }
 }
 
 /* ═══════════════════════════════════════════════════════════
