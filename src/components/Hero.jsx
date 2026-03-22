@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
 
 const FRAME_COUNT = 100;
-const IMAGE_PATH = '/Car_disassembly_frames/frame_';
+const IMAGE_PATH = 'Car_disassembly_frames/frame_';
 
 function AnimatedStat({ value, suffix = '', label, delay = 0, isInView }) {
   const [displayVal, setDisplayVal] = useState(0);
