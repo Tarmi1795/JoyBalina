@@ -162,10 +162,12 @@ export default function Hero() {
 
     if (localRatio < 0.2) {
       opacity = localRatio / 0.2;
-      transform = `translateY(${40 - (localRatio / 0.2) * 40}px)`;
+      transform = `translateY(calc(-50% + ${40 - (localRatio / 0.2) * 40}px))`;
     } else if (localRatio > 0.8) {
       opacity = (1 - localRatio) / 0.2;
-      transform = `translateY(-${(localRatio - 0.8) / 0.2 * 40}px)`;
+      transform = `translateY(calc(-50% - ${(localRatio - 0.8) / 0.2 * 40}px))`;
+    } else {
+      transform = 'translateY(-50%)';
     }
 
     // Use slightly smoother transform dynamically here
@@ -237,7 +239,7 @@ export default function Hero() {
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
               display: 'block',
-            }}>Geely</span>
+            }}>JB</span>
             <span style={{
               background: 'linear-gradient(135deg, #7c3aed 0%, #4fc3f7 50%, #7c3aed 100%)',
               WebkitBackgroundClip: 'text',
@@ -259,7 +261,7 @@ export default function Hero() {
             lineHeight: 1.7,
             textShadow: '0 2px 10px rgba(0,0,0,0.8)'
           }}>
-            Engineering perfection at every curve. Geely Motorsport redefines what it means to command the road. Scroll to deconstruct.
+            Engineering perfection at every curve. JB Motorsport redefines what it means to command the road. Scroll to deconstruct.
           </p>
 
           <div className="scroll-indicator" style={{

@@ -143,9 +143,9 @@ select option {
   top: 0; left: 0; right: 0;
   z-index: 5000;
   padding: 2.5rem 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
   transition: padding 0.5s cubic-bezier(0.22, 1, 0.36, 1), background 0.4s cubic-bezier(0.22, 1, 0.36, 1), backdrop-filter 0.4s ease;
   background: transparent;
   border-bottom: 1px solid transparent;
@@ -973,7 +973,7 @@ select option {
 
 .disassembly-overlay-card {
   position: absolute;
-  top: 60%;
+  top: 50%;
   transform: translateY(-50%);
   max-width: 520px;
   backdrop-filter: blur(12px);
@@ -984,6 +984,9 @@ select option {
   padding: 3rem;
   box-shadow: 0 0 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  pointer-events: auto;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .disassembly-overlay-card.overlay-left {
