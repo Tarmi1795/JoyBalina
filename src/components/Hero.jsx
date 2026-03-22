@@ -239,7 +239,7 @@ export default function Hero() {
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
               display: 'block',
-            }}>JB</span>
+            }}>Geely</span>
             <span style={{
               background: 'linear-gradient(135deg, #7c3aed 0%, #4fc3f7 50%, #7c3aed 100%)',
               WebkitBackgroundClip: 'text',
